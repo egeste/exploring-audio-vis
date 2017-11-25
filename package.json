@@ -6,8 +6,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack --config webpack.config.js --watch",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "storybook-deployer": {
@@ -32,12 +30,10 @@
   },
   "homepage": "https://github.com/egeste/exploring-audio-vis#readme",
   "dependencies": {
-    "babel-loader": "^7.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "base64-inline-loader": "^1.1.0",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.5",
     "lodash": "^4.17.4",
