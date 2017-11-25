@@ -6,7 +6,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'https://rawgit.com/egeste/exploring-audio-vis/master/build/'
   },
   module: {
     rules: [{

@@ -136,7 +136,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "https://rawgit.com/egeste/exploring-audio-vis/master/build/";
 /******/
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
@@ -187,16 +187,6 @@ __webpack_require__.e/* require.ensure */(0).then((function (require) {
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// import AudioVisualiser from '../src/components/AudioVisualiser'
-// import audio from '../assets/childish-gambino-redbone.mp3'
-
-// import
-
-// // import '../node_modules/react-vis/dist/style.css'
 
 /***/ })
 /******/ ]);

@@ -24,15 +24,3 @@ require.ensure([], (require) => {
     })
   })
 })
-
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-
-// import AudioVisualiser from '../src/components/AudioVisualiser'
-// import audio from '../assets/childish-gambino-redbone.mp3'
-
-// import
-
-// // import '../node_modules/react-vis/dist/style.css'
-
-
