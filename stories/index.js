@@ -87,8 +87,8 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
     renderFrequencyData={ frequencyData => {
       const data = pie()
         .sort(() => true)
-        .value(datum => datum.value)
-        .call(null, frequencyData.map(value => ({ value })))
+        .value(identity => identity)
+        .call(null, frequencyData)
         .map(datum => ({
           value: 1,
           color: colorBrewerSeq9[datum.index % colorBrewerSeq9.length],
