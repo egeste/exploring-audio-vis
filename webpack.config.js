@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: '[name].js',
-    publicPath: 'https://rawgit.com/egeste/exploring-audio-vis/master/build/'
+    publicPath: '/assets/js/audio-vis/'
   },
   module: {
     rules: [{
@@ -22,7 +22,6 @@ module.exports = {
       }
     }, {
       test: /\.css$/,
-      exclude: /node_modules/,
       loaders: [ 'style-loader', 'css-loader' ]
     }, {
       test: /^.*\.(mp3)$/,
