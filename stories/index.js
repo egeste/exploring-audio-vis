@@ -10,7 +10,7 @@ import {
   XYPlot,
   XAxis, YAxis,
   HorizontalGridLines,
-  LineSeries
+  LineSeries, PolygonSeries
 } from 'react-vis'
 
 import 'react-vis/dist/style.css'
@@ -34,6 +34,20 @@ storiesOf('AudioAnalyser', module).add('Basic Usage', () => (
       return (
         <XYPlot width={ 600 } height={ 300 }>
           <LineSeries data={ data } color="purple" />
+        </XYPlot>
+      )
+    } }
+  />
+)).add('With a polygon', () => (
+  <AudioVisualiser src={ audio }
+    renderFrequencyData={ frequencyData => {
+      const oneThirdLength = frequencyData.length / 3
+      const lowerTwoThirds = frequencyData.slice(0, -oneThirdLength)
+      const data = lowerTwoThirds.map((y, x) => ({ x, y }))
+
+      return (
+        <XYPlot width={ 600 } height={ 300 }>
+          <PolygonSeries data={ [ { x: 0, y: 0 }, ...data, { x: data.length, y: 0 }] } color="purple" />
         </XYPlot>
       )
     } }
