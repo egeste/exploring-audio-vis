@@ -33,6 +33,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "base64-inline-loader": "^1.1.0",
     "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
     "lodash": "^4.17.4",
     "react": "^16.1.1",
     "react-audio-player": "^0.6.2",

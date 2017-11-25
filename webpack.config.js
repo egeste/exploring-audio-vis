@@ -26,7 +26,7 @@ module.exports = {
     }, {
       test: /^.*\.(mp3)$/,
       exclude: /node_modules/,
-      use: 'base64-inline-loader?name=[name].[hash].[ext]'
+      loader: 'file-loader'
     }]
   }
 }
