@@ -13,13 +13,13 @@ export default class AudioAnalyser extends PureComponent {
     onFrequencyData: PropTypes.func.isRequired
   }
 
-  state = {
-    playing: false
-  }
+  // Track our playing state
+  state = { playing: false }
 
+  // Analyse a single "frame" of audio
   onAudioFrame = () => {
-    // Don't do anything if we're paused
-    if (!this.state.playing) return
+    // Don't do anything if we're paused, or if we don't have an analyser
+    if (!this.state.playing || !this.audioAnalyser) return
 
     // Create a new Uint8Array to inject the frequency data into
     const frequencyData = new Uint8Array(this.audioAnalyser.frequencyBinCount)
@@ -34,8 +34,9 @@ export default class AudioAnalyser extends PureComponent {
     requestAnimationFrame(this.onAudioFrame)
   }
 
+  // Handle the audio player ref once it's rendered
   onAudioPlayerRef = audioPlayerRef => {
-    if (!audioPlayerRef) return
+    if (!audioPlayerRef || !audioPlayerRef.audioEl) return
 
     // Allow the audio element to read data from dubious sources
     audioPlayerRef.audioEl.crossOrigin="anonymous"
