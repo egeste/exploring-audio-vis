@@ -7,9 +7,9 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
       loaders: [ 'style-loader', 'css-loader' ]
     }, {
-      include: path.resolve(__dirname, '../'),
       test: /^.*\.(mp3)$/,
-      use: 'base64-inline-loader?name=[name].[hash].[ext]'
+      include: path.resolve(__dirname, '../'),
+      loader: 'file-loader'
     }]
   }
 }
