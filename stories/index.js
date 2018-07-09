@@ -6,7 +6,8 @@ import AudioVisualiser from '../src/components/AudioVisualiser'
 import AudioAnalyser from '../src/components/AudioAnalyser'
 
 import {
-  XYPlot,
+  FlexibleXYPlot,
+  GradientDefs,
   XAxis, YAxis,
   HorizontalGridLines,
   ArcSeries,
@@ -47,11 +48,10 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
     src={ require('../assets/childish-gambino-redbone.mp3') }
     renderFrequencyData={ frequencyData => {
       const data = frequencyData.map((y, x) => ({ x, y }))
-
       return (
-        <XYPlot width={ 600 } height={ 300 }>
+        <FlexibleXYPlot height={ 300 }>
           <LineSeries data={ data } color="purple" />
-        </XYPlot>
+        </FlexibleXYPlot>
       )
     } }
   />
@@ -60,11 +60,10 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
     src={ require('../assets/skrillex-humble.mp3') }
     renderFrequencyData={ frequencyData => {
       const data = frequencyData.map((y, x) => ({ x, y }))
-
       return (
-        <XYPlot width={ 600 } height={ 300 }>
+        <FlexibleXYPlot height={ 300 }>
           <AreaSeries data={ data } color="purple" />
-        </XYPlot>
+        </FlexibleXYPlot>
       )
     } }
   />
@@ -73,11 +72,10 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
     src={ require('../assets/egeste-sinnplex.mp3') }
     renderFrequencyData={ frequencyData => {
       const data = frequencyData.map((y, x) => ({ x, y }))
-
       return (
-        <XYPlot width={ 600 } height={ 300 }>
+        <FlexibleXYPlot height={ 300 }>
           <PolygonSeries data={ [ { x: 0, y: 0 }, ...data, { x: data.length, y: 0 }] } color="purple" />
-        </XYPlot>
+        </FlexibleXYPlot>
       )
     } }
   />
@@ -99,7 +97,7 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
         }))
 
       return (
-        <XYPlot
+        <FlexibleXYPlot
           width={ 300 }
           height={ 300 }
           xDomain={ [ 0, 300 ] }
@@ -109,7 +107,44 @@ storiesOf('AudioVisualiser', module).add('With a LineSeries', () => (
             center={ { x: 150, y: 150 } }
             colorType="literal"
           />
-        </XYPlot>
+        </FlexibleXYPlot>
+      )
+    } }
+  />
+)).add('Spectrograph', () => (
+  <AudioVisualiser
+    src={ require('../assets/skrillex-humble.mp3') }
+    renderFrequencyData={ frequencyData => {
+      const data = frequencyData.map((y, x) => ({ x, y, y0: (y * -1) }))
+      return (
+        <FlexibleXYPlot height={ 300 }>
+          <AreaSeries data={ data } color="purple" />
+        </FlexibleXYPlot>
+      )
+    } }
+  />
+)).add('Cooler Spectrograph', () => (
+  <AudioVisualiser
+    src={ require('../assets/skrillex-humble.mp3') }
+    renderFrequencyData={ frequencyData => {
+      const filteredData = frequencyData.filter(y => y > 75)
+      const forwardData = filteredData.map((y, x) => ({ x, y, y0: (y * -1) }))
+      const reversedData = forwardData.map(({ x, y, y0 }) => ({ y, y0, x: (x * -1) })).reverse()
+      const data = [ ...reversedData, ...forwardData ]
+
+      return (
+        <FlexibleXYPlot height={ 600 }>
+          <GradientDefs>
+            <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="red" />
+              <stop offset="40%" stopColor="blue" />
+              <stop offset="60%" stopColor="blue" />
+              <stop offset="100%" stopColor="red" />
+            </linearGradient>
+          </GradientDefs>
+
+          <AreaSeries data={ data } color="url(#gradient)" />
+        </FlexibleXYPlot>
       )
     } }
   />
